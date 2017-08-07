@@ -368,12 +368,12 @@ def _run_tests(ctx, refspec, role, tests, env, subdir=None, timeout=None):
                         quoted_val = pipes.quote(val)
                         env_arg = '{var}={val}'.format(var=var, val=quoted_val)
                         args.append(run.Raw(env_arg))
-                args.extend([
-                    'adjust-ulimits',
-                    'ceph-coverage',
-                    '{tdir}/archive/coverage'.format(tdir=testdir)])
-                if timeout and timeout != '0':
-                    args.extend(['timeout', timeout])
+                # args.extend([
+                #     'adjust-ulimits',
+                #     'ceph-coverage',
+                #     '{tdir}/archive/coverage'.format(tdir=testdir)])
+                # if timeout and timeout != '0':
+                #     args.extend(['timeout', timeout])
                 args.extend([
                     '{srcdir}/{workunit}'.format(
                         srcdir=srcdir,
