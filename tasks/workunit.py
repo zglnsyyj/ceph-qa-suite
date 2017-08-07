@@ -321,7 +321,8 @@ def _run_tests(ctx, refspec, role, tests, env, subdir=None, timeout=None):
             run.Raw('&&'),
             'git', 'checkout', refspec,
             run.Raw('&&'),
-            'mv', 'qa/workunits', srcdir,
+            'cp','-r', 'qa/workunits', srcdir,
+            # 'mv', 'qa/workunits', srcdir,
         ],
     )
 
@@ -385,10 +386,10 @@ def _run_tests(ctx, refspec, role, tests, env, subdir=None, timeout=None):
                     args=args,
                     label="workunit test {workunit}".format(workunit=workunit)
                 )
-                # remote.run(
-                #     logger=log.getChild(role),
-                #     args=['sudo', 'rm', '-rf', '--', scratch_tmp],
-                # )
+                remote.run(
+                    logger=log.getChild(role),
+                    args=['sudo', 'rm', '-rf', '--', scratch_tmp],
+                )
     finally:
         log.info('Stopping %s on %s...', tests, role)
         remote.run(
