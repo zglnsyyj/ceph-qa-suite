@@ -316,7 +316,7 @@ def _run_tests(ctx, refspec, role, tests, env, subdir=None, timeout=None):
             'clone',
             git_url,
             clonedir,
-            run.Raw(';'),
+            run.Raw('&&'),
             'cd', '--', clonedir,
             run.Raw('&&'),
             'git', 'checkout', refspec,
