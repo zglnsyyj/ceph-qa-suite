@@ -57,9 +57,9 @@ def create_image(ctx, config):
         log.info('Creating image {name} with size {size}'.format(name=name,
                                                                  size=size))
         args = [
-                'adjust-ulimits',
-                'ceph-coverage'.format(tdir=testdir),
-                '{tdir}/archive/coverage'.format(tdir=testdir),
+                # 'adjust-ulimits',
+                # 'ceph-coverage'.format(tdir=testdir),
+                # '{tdir}/archive/coverage'.format(tdir=testdir),
                 'rbd',
                 '-p', 'rbd',
                 'create',
@@ -82,9 +82,9 @@ def create_image(ctx, config):
             (remote,) = ctx.cluster.only(role).remotes.keys()
             remote.run(
                 args=[
-                    'adjust-ulimits',
-                    'ceph-coverage',
-                    '{tdir}/archive/coverage'.format(tdir=testdir),
+                    # 'adjust-ulimits',
+                    # 'ceph-coverage',
+                    # '{tdir}/archive/coverage'.format(tdir=testdir),
                     'rbd',
                     '-p', 'rbd',
                     'rm',
@@ -132,9 +132,9 @@ def clone_image(ctx, config):
                     ('snap', 'protect', parent_spec),
                     ('clone', parent_spec, name)]:
             args = [
-                    'adjust-ulimits',
-                    'ceph-coverage'.format(tdir=testdir),
-                    '{tdir}/archive/coverage'.format(tdir=testdir),
+                    # 'adjust-ulimits',
+                    # 'ceph-coverage'.format(tdir=testdir),
+                    # '{tdir}/archive/coverage'.format(tdir=testdir),
                     'rbd', '-p', 'rbd'
                     ]
             args.extend(cmd)
@@ -157,9 +157,9 @@ def clone_image(ctx, config):
                         ('snap', 'unprotect', parent_spec),
                         ('snap', 'rm', parent_spec)]:
                 args = [
-                        'adjust-ulimits',
-                        'ceph-coverage'.format(tdir=testdir),
-                        '{tdir}/archive/coverage'.format(tdir=testdir),
+                        # 'adjust-ulimits',
+                        # 'ceph-coverage'.format(tdir=testdir),
+                        # '{tdir}/archive/coverage'.format(tdir=testdir),
                         'rbd', '-p', 'rbd'
                         ]
                 args.extend(cmd)
@@ -242,9 +242,9 @@ def dev_create(ctx, config):
         remote.run(
             args=[
                 'sudo',
-                'adjust-ulimits',
-                'ceph-coverage',
-                '{tdir}/archive/coverage'.format(tdir=testdir),
+                # 'adjust-ulimits',
+                # 'ceph-coverage',
+                # '{tdir}/archive/coverage'.format(tdir=testdir),
                 'rbd',
                 '--user', role.rsplit('.')[-1],
                 '-p', 'rbd',
@@ -269,9 +269,9 @@ def dev_create(ctx, config):
                 args=[
                     'LD_LIBRARY_PATH={tdir}/binary/usr/local/lib'.format(tdir=testdir),
                     'sudo',
-                    'adjust-ulimits',
-                    'ceph-coverage',
-                    '{tdir}/archive/coverage'.format(tdir=testdir),
+                    # 'adjust-ulimits',
+                    # 'ceph-coverage',
+                    # '{tdir}/archive/coverage'.format(tdir=testdir),
                     'rbd',
                     '-p', 'rbd',
                     'unmap',
@@ -399,9 +399,9 @@ def run_xfstests_one_client(ctx, role, properties):
             '/usr/bin/sudo',
             'TESTDIR={tdir}'.format(tdir=testdir),
             'URL_BASE={url}'.format(url=xfstests_url),
-            'adjust-ulimits',
-            'ceph-coverage',
-            '{tdir}/archive/coverage'.format(tdir=testdir),
+            # 'adjust-ulimits',
+            # 'ceph-coverage',
+            # '{tdir}/archive/coverage'.format(tdir=testdir),
             '/bin/bash',
             test_path,
             '-c', str(count),
